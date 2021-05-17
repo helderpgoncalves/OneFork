@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Camera = ({ navigation }) => {
+const Login = ({ navigation }) => {
   return (
     <View>
       <Text style={{ paddingTop: 200, textAlign: "center" }}>Olá</Text>
@@ -9,5 +9,4 @@ const Camera = ({ navigation }) => {
   );
 };
 
-export default Camera;
-// Dummy Datas
+export default Login;

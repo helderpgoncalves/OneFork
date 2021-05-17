@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 const Login = ({ navigation }) => {
   return (
     <View>
-      <Text style={{ paddingTop: 200, textAlign: "center" }}>Olá</Text>
+      <Text style={{ paddingTop: 200, textAlign: "center" }}>Login</Text>
     </View>
   );
 };

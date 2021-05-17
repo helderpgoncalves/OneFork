@@ -4,6 +4,8 @@ import OrderDelivery from './OrderDelivery'
 import Camera from "./Camera";
 import Login from "./Login";
 import Like from "./Like";
+import Search from "./Search";
+
 
 export {
     Home,
@@ -11,5 +13,6 @@ export {
     OrderDelivery,
     Camera,
     Login,
-    Like
+    Like,
+    Search
 }

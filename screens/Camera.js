@@ -16,7 +16,6 @@ const Camera = ({ navigation }) => {
       <QRCodeScanner
         reactivate={true}
         onRead={this.onSuccess}
-        flashMode={RNCamera.Constants.FlashMode.torch}
       />
     </View>
   );

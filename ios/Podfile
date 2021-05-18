@@ -21,6 +21,8 @@ target 'OneFork' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'ReactNativeGetLocation', :path => '../node_modules/react-native-get-location'
+
   target 'OneForkTests' do
     inherit! :complete
     # Pods for testing

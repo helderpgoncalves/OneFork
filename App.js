@@ -1,6 +1,6 @@
 import React from "react";
 import RootStackContainer from "./navigation/routes";
-import { setTopLevelNavigator } from "./utils";
+import { setTopLevelNavigator } from "./services/utils";
 
 const App = () => {
   return (

@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Button,
   Alert,
 } from "react-native";
 import Form from "react-native-basic-form";
@@ -46,6 +45,8 @@ const SignIn = ({ navigation }) => {
 
     } catch (err) {
       console.log(err.message);
+      Alert.alert("Login failed. Please try");
+      setLoading(false);
     }
   }
 

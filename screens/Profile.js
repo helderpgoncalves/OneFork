@@ -1,13 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, Button } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+import { StackActions, NavigationActions } from "react-navigation";
 
 const Profile = ({ navigation }) => {
-  const token = React.useState(null);
-
   async function logout() {
-    console.log(AsyncStorage.getItem("@CodeApi:token"));
-    await AsyncStorage.removeItem("@CodeApi:token");
+    try {
+      await AsyncStorage.removeItem("@ListApp:userToken");
+      Alert.alert("Logged Out");
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: "SignIn" })],
+      });
+      navigation.dispatch(resetAction);
+    } catch (e) {
+      throw e;
+    }
   }
 
   return (

@@ -1,34 +1,55 @@
-import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import Form from "react-native-basic-form";
+import api from "../../services/api/api";
+import AsyncStorage from "@react-native-community/async-storage";
+import { StackActions, NavigationActions } from "react-navigation";
 import { COLORS } from "../../constants";
-import { Context as UserContext } from "../../services/userAccessContext";
 
 const SignUp = ({ navigation }) => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+  const fields = [
+    { name: "firstName", label: "First Name", required: true },
+    { name: "lastName", label: "Last Name", required: true },
+    { name: "email", label: "Email Address", required: true },
+    { name: "password", label: "Password", required: true, secure: true },
+  ];
 
-    const fields = [
-      { name: "firstName", label: "First Name", required: true },
-      { name: "lastName", label: "Last Name", required: true },
-      { name: "email", label: "Email Address", required: true },
-      { name: "password", label: "Password", required: true, secure: true },
-    ];
-  const { state, onSignup, onDissmiss } = useContext(UserContext);
+  async function saveUser(user) {
+    await AsyncStorage.setItem("@ListApp:userToken", JSON.stringify(user));
+  }
 
+  // trreste@tesddt.com
   async function onSubmit(state) {
     setLoading(true);
     try {
-      onSignup(state);
+      const response = await api.post("/users/login", {
+        email: state.email,
+        password: state.password,
+      });
+
+      const token = response.data;
+      await saveUser(token);
+
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: "App" })],
+      });
       setLoading(false);
-      if (user) navigate("Home");
-    } catch (error) {
-      setError(error.message);
-      setLoading(false);
+
+      navigation.dispatch(resetAction);
+    } catch (err) {
+      console.log(err.message);
     }
   }
-  
+
   let formProps = { title: "Register", fields, onSubmit, loading };
 
   return (

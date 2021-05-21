@@ -1,23 +1,142 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import {
+  createSwitchNavigator,
+  createAppContainer,
+} from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import {Home, Map, Camera, Cart, Profile, Like, Food, SignIn, SignUp} from "../screens";
+import {
+  Home,
+  Food,
+  OrderDelivery,
+  Camera,
+  Like,
+  Map,
+  SignIn,
+  SignUp,
+  Cart,
+  Profile,
+} from "../screens";
 import AuthLoadingScreen from "../screens/user/AuthLoadingScreen";
+import { BottomTabBar, createBottomTabNavigator } from "react-navigation-tabs";
+import { COLORS, icons } from "../constants";
+import React from "react";
+import { Image } from "react-native";
 
-const StackNavigator = createStackNavigator(
+const BottomTab = createBottomTabNavigator(
   {
-    Home,
-    Map,
-    Camera,
-    Cart, 
-    Profile,
-    Like,
-    Food,
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icons.cutlery}
+            resizeMode="contain"
+            style={{
+              width: 24,
+              height: 24,
+              tintColor: focused ? COLORS.primary : COLORS.secondary,
+            }}
+          />
+        ),
+      },
+    },
+    Map: {
+      screen: Map,
+      navigationOptions: {
+        tabBarLabel: "Map",
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icons.camera}
+            resizeMode="contain"
+            style={{
+              width: 24,
+              height: 24,
+              tintColor: focused ? COLORS.primary : COLORS.secondary,
+            }}
+          />
+        ),
+      },
+    },
+    Camera: {
+      screen: Camera,
+      navigationOptions: {
+        tabBarLabel: "Camera",
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icons.camera}
+            resizeMode="contain"
+            style={{
+              width: 24,
+              height: 24,
+              tintColor: focused ? COLORS.primary : COLORS.secondary,
+            }}
+          />
+        ),
+      },
+    },
+    Like: {
+      screen: Like,
+      navigationOptions: {
+        tabBarLabel: "Like",
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icons.like}
+            resizeMode="contain"
+            style={{
+              width: 24,
+              height: 24,
+              tintColor: focused ? COLORS.primary : COLORS.secondary,
+            }}
+          />
+        ),
+      },
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        tabBarLabel: "Profile",
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icons.user}
+            resizeMode="contain"
+            style={{
+              width: 24,
+              height: 24,
+              tintColor: focused ? COLORS.primary : COLORS.secondary,
+            }}
+          />
+        ),
+      },
+    },
   },
   {
     initialRouteName: "Home",
+    tabBarOptions: {
+      activeTintColor: COLORS.primary,
+      inactiveTintColor: COLORS.secondary,
+    },
+  }
+);
+
+const StackNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: BottomTab,
+    },
+    Map,
+    Camera,
+    Profile,
+    Like,
+    Cart,
+    Food,
+    OrderDelivery,
+    SignIn,
+  },
+  {
     defaultNavigationOptions: {
       headerShown: false,
     },
+    tabBarComponent: (props) => <BottomTabBar {...this.props} />,
   }
 );
 
@@ -26,7 +145,7 @@ const StackNavigatorContainer = createAppContainer(StackNavigator);
 const AuthStack = createStackNavigator(
   {
     SignIn: SignIn,
-    SignUp, SignUp,
+    SignUp: SignUp,
     App: StackNavigatorContainer,
   },
   {

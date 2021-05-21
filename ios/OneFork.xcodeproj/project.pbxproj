@@ -35,6 +35,20 @@
 		C65EF4970CFE419C88219256 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AD79784894A788897678E /* Roboto-Light.ttf */; };
 		C8FD00F816394D36949E51B9 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 591666C828A141538D63BE0C /* Roboto-BoldItalic.ttf */; };
 		C9A137DEDD02515F421B0A10 /* libPods-OneFork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6D35285D8F8C6BAC16DDC2 /* libPods-OneFork.a */; };
+		CE6869422655607200F0C614 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869342655607100F0C614 /* FontAwesome5_Brands.ttf */; };
+		CE6869432655607200F0C614 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869352655607100F0C614 /* EvilIcons.ttf */; };
+		CE6869442655607200F0C614 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869362655607100F0C614 /* FontAwesome5_Regular.ttf */; };
+		CE6869452655607200F0C614 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869372655607100F0C614 /* Foundation.ttf */; };
+		CE6869462655607200F0C614 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869382655607100F0C614 /* Ionicons.ttf */; };
+		CE6869472655607200F0C614 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869392655607200F0C614 /* Feather.ttf */; };
+		CE6869482655607200F0C614 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693A2655607200F0C614 /* AntDesign.ttf */; };
+		CE6869492655607200F0C614 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693B2655607200F0C614 /* Entypo.ttf */; };
+		CE68694A2655607200F0C614 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693C2655607200F0C614 /* FontAwesome.ttf */; };
+		CE68694B2655607200F0C614 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693D2655607200F0C614 /* MaterialCommunityIcons.ttf */; };
+		CE68694C2655607200F0C614 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693E2655607200F0C614 /* Octicons.ttf */; };
+		CE68694D2655607200F0C614 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE68693F2655607200F0C614 /* FontAwesome5_Solid.ttf */; };
+		CE68694E2655607200F0C614 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869402655607200F0C614 /* Fontisto.ttf */; };
+		CE68694F2655607200F0C614 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6869412655607200F0C614 /* MaterialIcons.ttf */; };
 		DC0859E4D8D84C4D87BCE759 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8ED6DE48F7D429FA04081FC /* Roboto-Italic.ttf */; };
 		ED9C39CEF76B42378485AB4E /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6512C5EC8F46DE842EAED2 /* RobotoCondensed-Regular.ttf */; };
 		F3FC2F88E7F04284AB91ED7B /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C4600B0B7B94910809CDFE1 /* RobotoCondensed-Light.ttf */; };
@@ -96,6 +110,20 @@
 		9CCA4D04A95D4014A99749ED /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-Bold.ttf"; path = "../assets/fonts/RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		C8ED6DE48F7D429FA04081FC /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		C90EAB25448A423095E8ECEB /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		CE6869342655607100F0C614 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = ../assets/fonts/FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		CE6869352655607100F0C614 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = ../assets/fonts/EvilIcons.ttf; sourceTree = "<group>"; };
+		CE6869362655607100F0C614 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = ../assets/fonts/FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		CE6869372655607100F0C614 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = ../assets/fonts/Foundation.ttf; sourceTree = "<group>"; };
+		CE6869382655607100F0C614 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = ../assets/fonts/Ionicons.ttf; sourceTree = "<group>"; };
+		CE6869392655607200F0C614 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = ../assets/fonts/Feather.ttf; sourceTree = "<group>"; };
+		CE68693A2655607200F0C614 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = ../assets/fonts/AntDesign.ttf; sourceTree = "<group>"; };
+		CE68693B2655607200F0C614 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = ../assets/fonts/Entypo.ttf; sourceTree = "<group>"; };
+		CE68693C2655607200F0C614 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
+		CE68693D2655607200F0C614 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = ../assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		CE68693E2655607200F0C614 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = ../assets/fonts/Octicons.ttf; sourceTree = "<group>"; };
+		CE68693F2655607200F0C614 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = ../assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		CE6869402655607200F0C614 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = ../assets/fonts/Fontisto.ttf; sourceTree = "<group>"; };
+		CE6869412655607200F0C614 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = ../assets/fonts/MaterialIcons.ttf; sourceTree = "<group>"; };
 		DE0C2F266D5BA677676F3D81 /* Pods-OneFork-OneForkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneFork-OneForkTests.debug.xcconfig"; path = "Target Support Files/Pods-OneFork-OneForkTests/Pods-OneFork-OneForkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -237,6 +265,20 @@
 		D120FE3D554349D1A86421E8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE68693A2655607200F0C614 /* AntDesign.ttf */,
+				CE68693B2655607200F0C614 /* Entypo.ttf */,
+				CE6869352655607100F0C614 /* EvilIcons.ttf */,
+				CE6869392655607200F0C614 /* Feather.ttf */,
+				CE68693C2655607200F0C614 /* FontAwesome.ttf */,
+				CE6869342655607100F0C614 /* FontAwesome5_Brands.ttf */,
+				CE6869362655607100F0C614 /* FontAwesome5_Regular.ttf */,
+				CE68693F2655607200F0C614 /* FontAwesome5_Solid.ttf */,
+				CE6869402655607200F0C614 /* Fontisto.ttf */,
+				CE6869372655607100F0C614 /* Foundation.ttf */,
+				CE6869382655607100F0C614 /* Ionicons.ttf */,
+				CE68693D2655607200F0C614 /* MaterialCommunityIcons.ttf */,
+				CE6869412655607200F0C614 /* MaterialIcons.ttf */,
+				CE68693E2655607200F0C614 /* Octicons.ttf */,
 				26BF911780AF45D3AD76DAE7 /* Roboto-Black.ttf */,
 				38B7A87F9BF947EC9395BEE3 /* Roboto-BlackItalic.ttf */,
 				F7D24B49C3294B13B4536A4F /* Roboto-Bold.ttf */,
@@ -350,7 +392,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -404,6 +446,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6869422655607200F0C614 /* FontAwesome5_Brands.ttf in Resources */,
+				CE6869432655607200F0C614 /* EvilIcons.ttf in Resources */,
+				CE6869442655607200F0C614 /* FontAwesome5_Regular.ttf in Resources */,
+				CE6869452655607200F0C614 /* Foundation.ttf in Resources */,
+				CE6869462655607200F0C614 /* Ionicons.ttf in Resources */,
+				CE6869472655607200F0C614 /* Feather.ttf in Resources */,
+				CE6869482655607200F0C614 /* AntDesign.ttf in Resources */,
+				CE6869492655607200F0C614 /* Entypo.ttf in Resources */,
+				CE68694A2655607200F0C614 /* FontAwesome.ttf in Resources */,
+				CE68694B2655607200F0C614 /* MaterialCommunityIcons.ttf in Resources */,
+				CE68694C2655607200F0C614 /* Octicons.ttf in Resources */,
+				CE68694D2655607200F0C614 /* FontAwesome5_Solid.ttf in Resources */,
+				CE68694E2655607200F0C614 /* Fontisto.ttf in Resources */,
+				CE68694F2655607200F0C614 /* MaterialIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1915993061164079A0E2DC13 /* Roboto-Black.ttf in Resources */,
@@ -732,13 +788,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE0C2F266D5BA677676F3D81 /* Pods-OneFork-OneForkTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = OneForkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -755,10 +812,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 474E8AD92E740C233DA4F353 /* Pods-OneFork-OneForkTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = OneForkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -841,7 +899,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -869,7 +927,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -896,7 +954,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OneFork-tvOS.app/OneFork-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -923,7 +981,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OneFork-tvOS.app/OneFork-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -950,6 +1008,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -974,7 +1033,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
@@ -1010,6 +1069,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1027,7 +1087,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",

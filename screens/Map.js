@@ -20,6 +20,9 @@ const Map = ({ navigation }) => {
       });
   }, []);
 
+  // Activity Indicator
+  // TODO
+  
   return (
     <MapView
       provider={PROVIDER_GOOGLE}

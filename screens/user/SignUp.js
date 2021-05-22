@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Form from "react-native-basic-form";
 import api from "../../services/api/api";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -16,10 +11,11 @@ const SignUp = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
 
   const fields = [
-    { name: "firstName", label: "First Name", required: true },
-    { name: "lastName", label: "Last Name", required: true },
+    { name: "name", label: "name", required: true },
     { name: "email", label: "Email Address", required: true },
     { name: "password", label: "Password", required: true, secure: true },
+    { name: "address", label: "Address", required: false },
+    { name: "fiscalNumber", label: "Fiscal Number", required: false },
   ];
 
   async function saveUser(user) {
@@ -30,9 +26,12 @@ const SignUp = ({ navigation }) => {
   async function onSubmit(state) {
     setLoading(true);
     try {
-      const response = await api.post("/users/login", {
+      const response = await api.post("/users/create", {
+        name: state.name,
         email: state.email,
         password: state.password,
+        address: state.address,
+        fiscalNumber: state.fiscalNumber,
       });
 
       const token = response.data;
@@ -47,6 +46,7 @@ const SignUp = ({ navigation }) => {
       navigation.dispatch(resetAction);
     } catch (err) {
       console.log(err.message);
+      setLoading(false);
     }
   }
 

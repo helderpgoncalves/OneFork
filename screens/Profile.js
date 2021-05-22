@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Alert } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { StackActions, NavigationActions } from "react-navigation";
 

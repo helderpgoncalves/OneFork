@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import Form from "react-native-basic-form";
 import api from "../../services/api/api";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -41,8 +35,11 @@ const SignIn = ({ navigation }) => {
       });
       setLoading(false);
 
-      navigation.dispatch(resetAction);
-
+      if (response.data.error !== "Invalid email or password!") {
+        navigation.dispatch(resetAction);
+      } else {
+        Alert.alert(response.data.error);
+      }
     } catch (err) {
       console.log(err.message);
       Alert.alert("Login failed. Please try");

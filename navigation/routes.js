@@ -1,7 +1,4 @@
-import {
-  createSwitchNavigator,
-  createAppContainer,
-} from "react-navigation";
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import {
   Home,
@@ -14,6 +11,7 @@ import {
   SignUp,
   Cart,
   Profile,
+  Restaurant,
 } from "../screens";
 import AuthLoadingScreen from "../screens/user/AuthLoadingScreen";
 import { BottomTabBar, createBottomTabNavigator } from "react-navigation-tabs";
@@ -46,7 +44,7 @@ const BottomTab = createBottomTabNavigator(
         tabBarLabel: "Map",
         tabBarIcon: ({ focused }) => (
           <Image
-            source={icons.camera}
+            source={icons.location}
             resizeMode="contain"
             style={{
               width: 24,
@@ -91,13 +89,13 @@ const BottomTab = createBottomTabNavigator(
         ),
       },
     },
-    Profile: {
-      screen: Profile,
+    Restaurant: {
+      screen: Restaurant,
       navigationOptions: {
-        tabBarLabel: "Profile",
+        tabBarLabel: "Restaurant",
         tabBarIcon: ({ focused }) => (
           <Image
-            source={icons.user}
+            source={icons.restaurant}
             resizeMode="contain"
             style={{
               width: 24,
@@ -131,6 +129,7 @@ const StackNavigator = createStackNavigator(
     Food,
     OrderDelivery,
     SignIn,
+    Restaurant,
   },
   {
     defaultNavigationOptions: {

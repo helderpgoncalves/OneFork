@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   View,
@@ -19,6 +19,20 @@ const Home = ({ navigation }) => {
       longitude: 110.36381866919922,
     },
   };
+
+  useEffect(() => {
+    async function handleUserNextScreen() {
+      const userToken = await AsyncStorage.getItem("@ListApp:userToken");
+
+      props.navigation.navigate(userToken ? "App" : "Auth");
+    }
+
+    getRestaurant();
+  }, []);
+
+  function getRestaurant() {
+    console.log("todo");
+  }
 
   const categoryData = [
     {
@@ -354,7 +368,7 @@ const Home = ({ navigation }) => {
     return (
       <View style={{ flexDirection: "row", height: 50 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Map")}
+          onPress={() => navigation.navigate("Profile")}
           style={{
             width: 50,
             paddingLeft: SIZES.padding * 2,
@@ -362,7 +376,7 @@ const Home = ({ navigation }) => {
           }}
         >
           <Image
-            source={icons.nearby}
+            source={icons.user}
             resizeMode="contain"
             style={{
               width: 30,

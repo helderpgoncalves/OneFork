@@ -8,6 +8,8 @@ import Map from "./Map";
 import SignIn from "./user/SignIn";
 import SignUp from "./user/SignUp";
 import Cart from "./Cart";
+import Restaurant from "./Restaurant";
+import Settings from "./Settings";
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   SignUp,
   Cart,
   Profile,
+  Restaurant,
+  Settings,
 };

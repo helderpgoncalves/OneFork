@@ -31,7 +31,7 @@ const SignIn = ({ navigation }) => {
 
       const resetAction = StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: "App" })],
+        actions: [NavigationActions.navigate({ routeName: "Home" })],
       });
       setLoading(false);
 
@@ -41,8 +41,7 @@ const SignIn = ({ navigation }) => {
         Alert.alert(response.data.error);
       }
     } catch (err) {
-      console.log(err.message);
-      Alert.alert("Login failed. Please try");
+      Alert.alert(err.message);
       setLoading(false);
     }
   }

@@ -7,14 +7,13 @@ import { StackActions, NavigationActions } from "react-navigation";
 import { COLORS } from "../../constants";
 
 const SignUp = ({ navigation }) => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fields = [
     { name: "name", label: "name", required: true },
     { name: "email", label: "Email Address", required: true },
     { name: "password", label: "Password", required: true, secure: true },
-    { name: "address", label: "Address", required: false },
+    { name: "address", label: "Address", required: true },
     { name: "fiscalNumber", label: "Fiscal Number", required: false },
   ];
 

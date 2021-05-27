@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -7,17 +7,33 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  Alert,
 } from "react-native";
-
+import Geolocation from "@react-native-community/geolocation";
 import { icons, images, SIZES, COLORS, FONTS } from "../constants";
+import { check } from "react-native-permissions";
+
+let lat;
+let lng;
 
 const Home = ({ navigation }) => {
-  const initialCurrentLocation = {
-    streetName: "Cerquiras Restaurante",
-    gps: {
-      latitude: 1.5496614931250685,
-      longitude: 110.36381866919922,
-    },
+  const [restaurantes, setRestaurantes] = useState([]);
+  const [initialCurrentLocation, setInitialCurrentLocation] = useState([]);
+  const [imInsideRestaurant, setImInsideRestaurant] = useState(false);
+  const [restaurantToShow, setRestaurantToShow] = useState([]);
+
+  findCoordinates = () => {
+    Geolocation.getCurrentPosition(
+      (position) => {
+        lat1 = JSON.stringify(position.coords.latitude);
+        lng1 = JSON.stringify(position.coords.longitude);
+        lat = lat1;
+        lng = lng1;
+        setInitialCurrentLocation(JSON.stringify(position.coords));
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 1000, maximumAge: 1000 }
+    );
   };
 
   useEffect(() => {
@@ -26,12 +42,68 @@ const Home = ({ navigation }) => {
 
       props.navigation.navigate(userToken ? "App" : "Auth");
     }
-
-    getRestaurant();
+    findCoordinates();
+    getRestaurantes();
   }, []);
 
-  function getRestaurant() {
-    console.log("todo");
+  getRestaurantes = () => {
+    fetch("https://one-fork.herokuapp.com/api/Organization")
+      .then((response) => response.json())
+      .then((data) => {
+        setRestaurantes(data);
+        checkIfImInRestaurant(data);
+      });
+  };
+
+  const createThreeButtonAlert = (item, restauranteName, restaurantAddress) =>
+    Alert.alert(
+      "Are you inside " + restauranteName + " ?",
+      "Located at " + restaurantAddress,
+      [
+        {
+          text: "No",
+          onPress: () => setImInsideRestaurant(false),
+          style: "cancel",
+        },
+        { text: "Yes", onPress: () => insideRestaurant(item) },
+      ]
+    );
+
+  function insideRestaurant(restaurant) {
+    console.log(restaurant)
+    setRestaurantToShow(restaurant);
+    setImInsideRestaurant(true);
+    console.log("Ola");
+  }
+
+  function checkIfImInRestaurant(restaurantLocation) {
+    restaurantLocation.forEach((item) => {
+      var lat1 = lat;
+      var lon1 = lng;
+      var lat2 = item.latLocation;
+      var lon2 = item.longLocation;
+      if (lat1 == lat2 && lon1 == lon2) {
+        return 0;
+      } else {
+        var radlat1 = (Math.PI * lat1) / 180;
+        var radlat2 = (Math.PI * lat2) / 180;
+        var theta = lon1 - lon2;
+        var radtheta = (Math.PI * theta) / 180;
+        var dist =
+          Math.sin(radlat1) * Math.sin(radlat2) +
+          Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+          dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = (dist * 180) / Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344; // Em km
+        if (dist < 0.05) {
+          createThreeButtonAlert(item, item.name, item.address);
+        }
+      }
+    });
   }
 
   const categoryData = [
@@ -398,7 +470,7 @@ const Home = ({ navigation }) => {
               borderRadius: SIZES.radius,
             }}
           >
-            <Text style={{ ...FONTS.h3 }}>OLA</Text>
+            <Text style={{ ...FONTS.h3 }}>{restaurantToShow.name}</Text>
           </View>
         </View>
 

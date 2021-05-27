@@ -27,6 +27,7 @@ export const camera = require("../assets/icons/camera.png");
 export const codigoQr = require("../assets/icons/codigo-qr.png");
 export const restaurant = require("../assets/icons/restaurant.png");
 export const settings = require("../assets/icons/settings.png");
+export const restaurantMarker = require("../assets/icons/restaurantMarker.png");
 
 
 export default {
@@ -59,4 +60,5 @@ export default {
     codigoQr,
     restaurant,
     settings,
+    restaurantMarker
 }

@@ -368,7 +368,7 @@ const Home = ({ navigation }) => {
     return (
       <View style={{ flexDirection: "row", height: 50 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
+          onPress={() => navigation.navigate("SettingScreen")}
           style={{
             width: 50,
             paddingLeft: SIZES.padding * 2,

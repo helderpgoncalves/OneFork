@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import { icons, images, SIZES, COLORS, FONTS } from "../constants";
-import { check } from "react-native-permissions";
 
 let lat;
 let lng;
@@ -70,10 +69,8 @@ const Home = ({ navigation }) => {
     );
 
   function insideRestaurant(restaurant) {
-    console.log(restaurant)
     setRestaurantToShow(restaurant);
     setImInsideRestaurant(true);
-    console.log("Ola");
   }
 
   function checkIfImInRestaurant(restaurantLocation) {
@@ -440,7 +437,7 @@ const Home = ({ navigation }) => {
     return (
       <View style={{ flexDirection: "row", height: 50 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("SettingScreen")}
+          onPress={() => navigation.navigate("Profile")}
           style={{
             width: 50,
             paddingLeft: SIZES.padding * 2,

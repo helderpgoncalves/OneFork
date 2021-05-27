@@ -51,11 +51,10 @@ const Profile = ({ navigation }) => {
 
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-        </View>
+        ></View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("Cart")}
+          onPress={() => navigation.navigate("Settings")}
           style={{
             width: 50,
             paddingRight: SIZES.padding * 2,
@@ -83,7 +82,12 @@ const Profile = ({ navigation }) => {
       </View>
     );
   }
-  return <SafeAreaView style={styles.container}>{renderHeader()}</SafeAreaView>;
+  return (
+    <SafeAreaView style={styles.container}>
+      {renderHeader()}
+      {renderLogout()}
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({

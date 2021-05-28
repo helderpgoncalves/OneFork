@@ -12,7 +12,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { COLORS, icons } from "../constants";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 let lat;
 let lng;
@@ -53,6 +52,30 @@ const Map = ({ navigation }) => {
     findCoordinates();
     getRestaurantes();
   }, []);
+
+  function zoomIn() {
+    let newRegion = {
+      latitude: region.latitude,
+      longitude: region.longitude,
+      latitudeDelta: region.latitudeDelta / 2,
+      longitudeDelta: region.longitudeDelta / 2,
+    };
+
+    // setRegion(newRegion);
+    // mapView.current.animateToRegion(newRegion, 200);
+  }
+
+  function zoomOut() {
+    let newRegion = {
+      latitude: region.latitude,
+      longitude: region.longitude,
+      latitudeDelta: region.latitudeDelta * 2,
+      longitudeDelta: region.longitudeDelta * 2,
+    };
+
+    // setRegion(newRegion);
+    //  mapView.current.animateToRegion(newRegion, 200);
+  }
 
   return (
     <>

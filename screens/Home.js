@@ -29,6 +29,7 @@ const Home = ({ navigation }) => {
         lat = lat1;
         lng = lng1;
         setInitialCurrentLocation(JSON.stringify(position.coords));
+        setCurrentLocation(JSON.stringify(position.coords));
       },
       (error) => console.log(error),
       { enableHighAccuracy: true, timeout: 1000, maximumAge: 1000 }
@@ -164,7 +165,7 @@ const Home = ({ navigation }) => {
   const restaurantData = [
     {
       id: 1,
-      name: "ByProgrammers Burger",
+      name: "Hamburguer",
       rating: 4.8,
       categories: [5, 7],
       priceRating: affordable,
@@ -259,7 +260,7 @@ const Home = ({ navigation }) => {
     },
     {
       id: 3,
-      name: "ByProgrammers Hotdogs",
+      name: "Cachorro Quente",
       rating: 4.8,
       categories: [3],
       priceRating: expensive,
@@ -286,7 +287,7 @@ const Home = ({ navigation }) => {
     },
     {
       id: 4,
-      name: "ByProgrammers Sushi",
+      name: "Sushi",
       rating: 4.8,
       categories: [8],
       priceRating: expensive,
@@ -313,7 +314,7 @@ const Home = ({ navigation }) => {
     },
     {
       id: 5,
-      name: "ByProgrammers Cuisine",
+      name: "Cuisine",
       rating: 4.8,
       categories: [1, 2],
       priceRating: affordable,
@@ -364,7 +365,7 @@ const Home = ({ navigation }) => {
     },
     {
       id: 6,
-      name: "ByProgrammers Dessets",
+      name: "Dessets",
       rating: 4.9,
       categories: [9, 10],
       priceRating: affordable,
@@ -563,14 +564,15 @@ const Home = ({ navigation }) => {
     );
   }
 
+  function renderNotRestaurant() {}
+
   function renderRestaurantList() {
     const renderItem = ({ item }) => (
       <TouchableOpacity
         style={{ marginBottom: SIZES.padding * 2 }}
         onPress={() =>
-          navigation.navigate("Restaurant", {
+          navigation.navigate("Food", {
             item,
-            currentLocation,
           })
         }
       >

@@ -12,16 +12,16 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
-const Restaurant = ({ route, navigation }) => {
+const Food = ({ route, navigation }) => {
   const scrollX = new Animated.Value(0);
-  const [restaurant, setRestaurant] = React.useState(null);
+  const [food, setFood] = React.useState(null);
   const [currentLocation, setCurrentLocation] = React.useState(null);
   const [orderItems, setOrderItems] = React.useState([]);
-
+  const [item, setItem] = React.useState(null);
   React.useEffect(() => {
-    let { item, currentLocation } = route.params;
-    setRestaurant(item);
-    setCurrentLocation(currentLocation);
+    setItem(navigation.getParam("item"));
+    setFood(item);
+    //setCurrentLocation(currentLocation);
   });
 
   function editOrder(action, menuId, price) {
@@ -119,7 +119,7 @@ const Restaurant = ({ route, navigation }) => {
               backgroundColor: COLORS.lightGray3,
             }}
           >
-            <Text style={{ ...FONTS.h3 }}>{restaurant?.name}</Text>
+            <Text style={{ ...FONTS.h3 }}>{food?.name}</Text>
           </View>
         </View>
 
@@ -157,7 +157,7 @@ const Restaurant = ({ route, navigation }) => {
           { useNativeDriver: false }
         )}
       >
-        {restaurant?.menu.map((item, index) => (
+        {food?.menu.map((item, index) => (
           <View key={`menu-${index}`} style={{ alignItems: "center" }}>
             <View style={{ height: SIZES.height * 0.35 }}>
               {/* Food Image */}
@@ -285,7 +285,7 @@ const Restaurant = ({ route, navigation }) => {
             height: SIZES.padding,
           }}
         >
-          {restaurant?.menu.map((item, index) => {
+          {food?.menu.map((item, index) => {
             const opacity = dotPosition.interpolate({
               inputRange: [index - 1, index, index + 1],
               outputRange: [0.3, 1, 0.3],
@@ -350,12 +350,7 @@ const Restaurant = ({ route, navigation }) => {
                 alignItems: "center",
                 borderRadius: SIZES.radius,
               }}
-              onPress={() =>
-                navigation.navigate("OrderDelivery", {
-                  restaurant: restaurant,
-                  currentLocation: currentLocation,
-                })
-              }
+              onPress={() => console.log("TODO")}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
                 Add to Cart
@@ -396,4 +391,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Restaurant;
+export default Food;

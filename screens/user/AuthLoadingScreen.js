@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { View, ActivityIndicator, useColorScheme } from "react-native";
-import {COLORS} from "../../constants"
+import { COLORS } from "../../constants";
 
 export default function AuthLoadingScreen(props) {
   useEffect(() => {

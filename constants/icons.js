@@ -20,7 +20,6 @@ export const rice_bowl = require("../assets/icons/rice-bowl.png");
 export const salad = require("../assets/icons/salad.png");
 export const search = require("../assets/icons/search.png");
 export const basket = require("../assets/icons/shopping-basket.png");
-export const star = require("../assets/icons/star.png");
 export const sushi = require("../assets/icons/sushi.png");
 export const user = require("../assets/icons/user.png");
 export const camera = require("../assets/icons/camera.png");
@@ -28,37 +27,45 @@ export const codigoQr = require("../assets/icons/codigo-qr.png");
 export const restaurant = require("../assets/icons/restaurant.png");
 export const settings = require("../assets/icons/settings.png");
 export const restaurantMarker = require("../assets/icons/restaurantMarker.png");
-
+export const follower = require("../assets/icons/follower.png");
+export const menu = require("../assets/icons/menu.png");
+export const unfriend = require("../assets/icons/unfriend.png");
+export const star = require("../assets/icons/star.png");
+export const star2 = require("../assets/icons/star.png");
 
 export default {
-    back,
-    car,
-    cutlery,
-    donut,
-    drink,
-    fire,
-    fries,
-    hamburger,
-    hotdog,
-    like,
-    list,
-    location,
-    master_card,
-    nearby,
-    noodle,
-    pin,
-    pizza,
-    red_pin,
-    rice_bowl,
-    salad,
-    search,
-    basket,
-    star,
-    sushi,
-    user,
-    camera,
-    codigoQr,
-    restaurant,
-    settings,
-    restaurantMarker
-}
+  back,
+  car,
+  cutlery,
+  donut,
+  drink,
+  fire,
+  fries,
+  hamburger,
+  hotdog,
+  like,
+  list,
+  location,
+  master_card,
+  nearby,
+  noodle,
+  pin,
+  pizza,
+  red_pin,
+  rice_bowl,
+  salad,
+  search,
+  basket,
+  sushi,
+  user,
+  camera,
+  codigoQr,
+  restaurant,
+  settings,
+  restaurantMarker,
+  star,
+  menu,
+  unfriend,
+  follower,
+  star2,
+};

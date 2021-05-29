@@ -13,6 +13,8 @@ import { icons, images, SIZES, COLORS, FONTS } from "../constants";
 import AsyncStorage from "@react-native-community/async-storage";
 import api from "../services/api/api";
 import { createIconSetFromFontello } from "react-native-vector-icons";
+import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Restaurant = ({ navigation, route }) => {
   const [amIfollow, setIamFollow] = React.useState(false);
@@ -31,6 +33,7 @@ const Restaurant = ({ navigation, route }) => {
       const restaurantId = await AsyncStorage.getItem("idRestaurant");
       if (restaurantId !== null) {
         getRestaurant(restaurantId);
+        getReviews();
       }
     } catch (error) {
       console.log(error.message);
@@ -38,19 +41,30 @@ const Restaurant = ({ navigation, route }) => {
   };
 
   getRestaurant = (id) => {
-    fetch("https://one-fork.herokuapp.com/api/Organization/id/"+id)
+    fetch("https://one-fork.herokuapp.com/api/Organization/id/" + id)
       .then((response) => response.json())
       .then((data) => {
-        setRestaurant(data["data"]);
-        setLoading(false);
-      }).catch(function(error){
-        console.log(error);
+        setRestaurant(Object.values(data));
       })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  getReviews = (id) => {
+    fetch("http://one-fork.herokuapp.com/api/review/idOrganization/" + id)
+      .then((response) => response.json())
+      .then((data) => {
+        setReviews(Object.values(data));
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     getRestaurantId();
-    console.log(restaurant);
   }, []);
 
   const restaurantData = [
@@ -184,7 +198,7 @@ const Restaurant = ({ navigation, route }) => {
     if (clicked == "About") {
       return renderAbout();
     } else if (clicked == "Reviews") {
-      return renderRestaurantReviews();
+      return renderReviews();
     } else {
       return renderFollowers();
     }
@@ -192,10 +206,81 @@ const Restaurant = ({ navigation, route }) => {
 
   function renderAbout() {
     return (
-      <View>
-        <Text>Ola</Text>
+      <View style={{ flexDirection: "column" }}>
+        <View>
+          <Text
+            style={{
+              fontSize: SIZES.body1,
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {restaurant[0].name}
+          </Text>
+          <Text
+            style={{
+              marginTop: 20,
+              fontSize: SIZES.body2,
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            Localização: {restaurant[0].address}
+          </Text>
+          <Text
+            style={{
+              flexDirection: "row",
+              marginTop: 20,
+              fontSize: SIZES.body2,
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            Contacto: {restaurant[0].phone}
+          </Text>
+        </View>
+        <View style={{ marginTop: 30 }}>
+          <TouchableOpacity
+            style={{ marginLeft: 40, marginRight: 40, marginTop: 10 }}
+          >
+            <Button
+              buttonStyle={{ borderColor: COLORS.primary }}
+              titleStyle={{color: COLORS.primary}}
+              type="outline"
+              onPress={() => obterDirecoes()}
+              icon={<Icon name="location-arrow" size={32} color={COLORS.primary} />}
+              iconRight
+              title="Obter Direções "
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{ marginLeft: 40, marginRight: 40, marginTop: 10 }}
+          >
+            <Button
+              onPress={() => ligarRestaurante()}
+              buttonStyle={{ backgroundColor: COLORS.primary }}
+              titleStyle={{ color: COLORS.white }}
+              icon={<Icon name="phone-square" size={32} color="white" />}
+              iconRight
+              title="Ligar para o estabelicimento    "
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginBottom: 500 }} />
       </View>
     );
+  }
+
+  function obterDirecoes(){
+    console.log("Obter Direcoes")
+  };
+
+  function ligarRestaurante(){
+    console.log("Ligar Restaurante");
   }
 
   function renderFollowers() {
@@ -217,7 +302,7 @@ const Restaurant = ({ navigation, route }) => {
                   "https://cdn.website.dish.co/media/f9/32/1472085/Cerqueiras-Lounge-und-Restaurante-36B01405-C09B-4F2E-80BD-6F48AAEDC8A9.jpg",
               }}
             />
-            <Text style={styles.name}>{restaurant.name}</Text>
+            <Text style={styles.name}>{restaurant[0].name}</Text>
           </View>
         </View>
 
@@ -305,7 +390,7 @@ const Restaurant = ({ navigation, route }) => {
     );
   }
 
-  function renderRestaurantReviews() {
+  function renderReviews() {
     const renderItem = ({ item }) => (
       <View style={{ marginBottom: SIZES.padding * 2 }}>
         {/* Image */}
@@ -383,7 +468,6 @@ const Restaurant = ({ navigation, route }) => {
         </View>
       ) : (
         <View style={{ backgroundColor: "white" }}>
-                      
           <SafeAreaView style={{ backgroundColor: COLORS.primary }}>
             {renderHeader()}
           </SafeAreaView>

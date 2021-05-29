@@ -11,10 +11,10 @@ import {
 } from "react-native";
 import { icons, images, SIZES, COLORS, FONTS } from "../constants";
 import AsyncStorage from "@react-native-community/async-storage";
-import api from "../services/api/api";
-import { createIconSetFromFontello } from "react-native-vector-icons";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
+import ActionButton from "react-native-action-button";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Restaurant = ({ navigation, route }) => {
   const [amIfollow, setIamFollow] = React.useState(false);
@@ -22,6 +22,7 @@ const Restaurant = ({ navigation, route }) => {
   const [reviews, setReviews] = React.useState(null);
   const [loading, setLoading] = useState(true);
   const [restaurant, setRestaurant] = useState([]);
+  const [refreshing, isRefreshing] = useState(false);
 
   // price rating
   const affordable = 1;
@@ -33,7 +34,7 @@ const Restaurant = ({ navigation, route }) => {
       const restaurantId = await AsyncStorage.getItem("idRestaurant");
       if (restaurantId !== null) {
         getRestaurant(restaurantId);
-        getReviews();
+        getReviews(restaurantId);
       }
     } catch (error) {
       console.log(error.message);
@@ -60,7 +61,7 @@ const Restaurant = ({ navigation, route }) => {
           setReviews([]);
           setLoading(false);
         } else {
-          setReviews(Object.values(data));
+          setReviews(Object.values(data)[0]);
           setLoading(false);
         }
       })
@@ -285,7 +286,7 @@ const Restaurant = ({ navigation, route }) => {
           }}
         >
           <Image
-            source={item.image}
+            source={{ uri: item.image }}
             resizeMode="cover"
             style={{
               width: "100%",
@@ -331,16 +332,38 @@ const Restaurant = ({ navigation, route }) => {
     );
 
     return (
-      <FlatList
-        data={reviews}
-        keyExtractor={(item) => `${item.id}`}
-        renderItem={renderItem}
-        contentContainerStyle={{
-          paddingHorizontal: SIZES.padding * 2,
-          paddingBottom: 400,
-          backgroundColor: "white",
-        }}
-      />
+      <View>
+        <Button
+          style={{ marginLeft: "auto", marginRight: "auto" }}
+          onPress={() =>
+            navigation.navigate("MakeReview", {
+              idRestaurant: restaurant[0].id,
+            })
+          }
+          buttonStyle={{
+            marginBottom: 10,
+            width: "45%",
+            backgroundColor: COLORS.secondary,
+            borderRadius: 30,
+          }}
+          titleStyle={{ color: COLORS.white }}
+          icon={<Icon name="comment" size={28} color={COLORS.white} />}
+          iconRight
+          title="Make Review    "
+        />
+        <FlatList
+          nestedScrollEnabled
+          data={reviews}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={renderItem}
+          contentContainerStyle={{
+            paddingHorizontal: SIZES.padding * 2,
+            backgroundColor: "white",
+            flexGrow: 1,
+            marginBottom: 200,
+          }}
+        />
+      </View>
     );
   }
   return (

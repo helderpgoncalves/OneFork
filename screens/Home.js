@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import { icons, images, SIZES, COLORS, FONTS } from "../constants";
+import AsyncStorage from "@react-native-community/async-storage";
 
 let lat;
 let lng;
@@ -20,6 +21,7 @@ const Home = ({ navigation }) => {
   const [initialCurrentLocation, setInitialCurrentLocation] = useState([]);
   const [imInsideRestaurant, setImInsideRestaurant] = useState(false);
   const [restaurantToShow, setRestaurantToShow] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   findCoordinates = () => {
     Geolocation.getCurrentPosition(
@@ -36,12 +38,15 @@ const Home = ({ navigation }) => {
     );
   };
 
-  useEffect(() => {
-    async function handleUserNextScreen() {
-      const userToken = await AsyncStorage.getItem("@ListApp:userToken");
-
-      props.navigation.navigate(userToken ? "App" : "Auth");
+  async function removeSavedRestaurant() {
+    try {
+      await AsyncStorage.removeItem("idRestaurant");
+    } catch (error) {
+      console.log(error.message);
     }
+  }
+  useEffect(() => {
+    removeSavedRestaurant();
     findCoordinates();
     getRestaurantes();
   }, []);
@@ -62,16 +67,29 @@ const Home = ({ navigation }) => {
       [
         {
           text: "No",
-          onPress: () => setImInsideRestaurant(false),
+          onPress: () => insideRestaurant(null, false),
           style: "cancel",
         },
-        { text: "Yes", onPress: () => insideRestaurant(item) },
+        { text: "Yes", onPress: () => insideRestaurant(item, true) },
       ]
     );
 
-  function insideRestaurant(restaurant) {
+  async function insideRestaurant(restaurant, value) {
     setRestaurantToShow(restaurant);
-    setImInsideRestaurant(true);
+    setImInsideRestaurant(value);
+    if (value === true) {
+      try {
+        await AsyncStorage.setItem("idRestaurant", restaurant.id);
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      try {
+        await AsyncStorage.removeItem("idRestaurant");
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   }
 
   function checkIfImInRestaurant(restaurantLocation) {
@@ -563,8 +581,6 @@ const Home = ({ navigation }) => {
       </View>
     );
   }
-
-  function renderNotRestaurant() {}
 
   function renderRestaurantList() {
     const renderItem = ({ item }) => (

@@ -9,6 +9,7 @@ import SignIn from "./user/SignIn";
 import SignUp from "./user/SignUp";
 import Cart from "./Cart";
 import Restaurant from "./Restaurant";
+import MakeReview from "./MakeReview";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   Cart,
   Profile,
   Restaurant,
+  MakeReview,
 };

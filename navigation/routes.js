@@ -11,6 +11,7 @@ import {
   SignUp,
   Cart,
   Profile,
+  MakeReview,
   Restaurant,
 } from "../screens";
 import AuthLoadingScreen from "../screens/user/AuthLoadingScreen";
@@ -130,6 +131,7 @@ const StackNavigator = createStackNavigator(
     OrderDelivery,
     SignIn,
     Restaurant,
+    MakeReview,
   },
   {
     defaultNavigationOptions: {

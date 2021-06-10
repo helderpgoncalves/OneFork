@@ -1,36 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 
 import QRCodeScanner from "react-native-qrcode-scanner";
-import { RNCamera } from "react-native-camera";
 
 import AsyncStorage from "@react-native-community/async-storage";
 
-function Camera({ navigation }) {
-  var [ idMesa, setIdMesa ] = useState("");
+import { StackActions, NavigationActions } from "react-navigation";
 
-  getMesa = () => {
-    fetch("https://one-fork.herokuapp.com/api/Organization")
+function Camera({ navigation }) {
+  const successAction = StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: "Home" })],
+  });
+
+  const getMesa = (mesa) => {
+    fetch("https://one-fork.herokuapp.com/api/table/id/" + mesa)
       .then((response) => response.json())
-      .then((data) => {
-        setRestaurantes(data);
-        checkIfImInRestaurant(data);
+      .then(async (data) => {
+        if (data.error) {
+          Alert.alert("QR Code inválido!");
+        } else {
+          try {
+            Alert.alert(data.data.name + " - Bem-vindo!");
+            await AsyncStorage.setItem(
+              "idRestaurant",
+              data.data.OrganizationId
+            );
+            navigation.dispatch(successAction);
+          } catch (error) {
+            Alert.alert("QR Code inválido!");
+          }
+        }
+      })
+      .catch((err) => {
+        console.log("**************");
+        console.log(err);
+        Alert.alert("QR Code inválido!");
       });
   };
 
-  onSuccess = async (e) => {
-    setIdMesa(e.data);
-    await AsyncStorage.setItem("idMesa", e.data);
-    /*Linking.openURL(e.data).catch((err) =>
-      console.error("An error occured", err)
-    );*/
+  const onSuccess = (e) => {
+    getMesa(e.data);
   };
 
   return (
     <View style={styles.container}>
       <QRCodeScanner reactivate={true} onRead={onSuccess} />
-      <Text>{idMesa}</Text>
     </View>
   );
 }

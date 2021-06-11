@@ -12,7 +12,11 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
-const Food = ({ route, navigation }) => {
+import { connect } from "react-redux";
+import { addCart } from "../services/redux/actions/cart";
+import { Alert } from "react-native";
+
+const Food = ({ route, navigation, addCart }) => {
   const scrollX = new Animated.Value(0);
   const [food, setFood] = React.useState(null);
   const [currentLocation, setCurrentLocation] = React.useState(null);
@@ -350,7 +354,12 @@ const Food = ({ route, navigation }) => {
                 alignItems: "center",
                 borderRadius: SIZES.radius,
               }}
-              onPress={() => console.log("TODO")}
+              onPress={() => {
+                Alert.alert(JSON.stringify(orderItems));
+                orderItems.forEach((i) => {
+                  addCart({ ...i, preco: i.price, quantidade: i.qty });
+                });
+              }}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
                 Add to Cart
@@ -391,4 +400,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Food;
+function mapDispatchToProp(dispatch) {
+  return {
+    addCart(product) {
+      const action = addCart(product);
+      dispatch(action);
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProp)(Food);

@@ -10,8 +10,13 @@ import {
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
-const Cart = ({ route, navigation, restaurant }) => {
+import { connect } from 'react-redux';
+import { remCart } from '../services/redux/actions/cart';
+import { Alert } from "react-native";
+
+const Cart = ({ route, navigation, restaurant, cart, totalCart, remCart }) => {
   function renderHeader() {
+    Alert.alert(JSON.stringify(cart));
     return (
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity
@@ -187,8 +192,8 @@ const Cart = ({ route, navigation, restaurant }) => {
               borderBottomWidth: 1,
             }}
           >
-            <Text style={{ ...FONTS.h3 }}>3 items in Cart</Text>
-            <Text style={{ ...FONTS.h3 }}>30 €</Text>
+            <Text style={{ ...FONTS.h3 }}>{cart.length} items in Cart</Text>
+            <Text style={{ ...FONTS.h3 }}>{totalCart} €</Text>
           </View>
 
           <View
@@ -275,13 +280,33 @@ const Cart = ({ route, navigation, restaurant }) => {
   }
   return (
     <SafeAreaView style={styles.container}>
+      {cart.map(c => {
+        <Text>{c.id}</Text>
+      })}
       {renderHeader()}
       {renderPayment()}
     </SafeAreaView>
   );
 };
 
-export default Cart;
+
+const mapStateToProps = (state, props) => {
+  return { 
+    cart: state.cart.cart,
+    totalCart: state.cart.valorTotal
+  };
+}
+
+function mapDispatchToProp(dispatch) {
+  return {
+      remCart(productID) {
+          const action = remCart(productID);
+          dispatch(action);
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProp)(Cart);
 
 const styles = StyleSheet.create({
   container: {

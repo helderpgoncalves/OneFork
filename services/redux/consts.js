@@ -1,4 +1,2 @@
-export default {
-    ADDCART: "ADDCART",
-    REMCART: "REMCART"
-}
+export const ADDCART = "ADDCART";
+export const REMCART = "REMCART";

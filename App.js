@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from 'react-redux';
 import RootStackContainer from "./navigation/routes";
 import { setTopLevelNavigator } from "./services/utils";
 

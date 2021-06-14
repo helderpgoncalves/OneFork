@@ -1,14 +1,19 @@
 import React from "react";
+import { Provider } from 'react-redux';
 import RootStackContainer from "./navigation/routes";
 import { setTopLevelNavigator } from "./services/utils";
 
+import store from "./services/redux/store";
+
 const App = () => {
   return (
-    <RootStackContainer
-      ref={(navigatorRef) => {
-        setTopLevelNavigator(navigatorRef);
-      }}
-    />
+    <Provider store={store}>
+      <RootStackContainer
+        ref={(navigatorRef) => {
+          setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </Provider>
   );
 };
 

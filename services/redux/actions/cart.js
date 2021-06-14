@@ -1,4 +1,4 @@
-import { ADDCART, REMCART } from '../consts';
+import { ADDCART, REMCART, CLRCART } from '../consts';
 
 export const addCart = (product) => ({
     type: ADDCART,
@@ -8,8 +8,12 @@ export const addCart = (product) => ({
 })
 
 export const remCart = (productId) => ({
-    type: ADDCART,
+    type: REMCART,
     payload: {
         id: productId
     }
+})
+
+export const clrCart = () => ({
+    type: CLRCART
 })

@@ -28,7 +28,9 @@ const Food = ({ route, navigation, addCart }) => {
     //setCurrentLocation(currentLocation);
   });
 
-  function editOrder(action, menuId, price) {
+  function editOrder(action, it) {
+    var menuId = it.menuId;
+    var price = it.price;
     let orderList = orderItems.slice();
     let item = orderList.filter((a) => a.menuId == menuId);
 
@@ -39,6 +41,8 @@ const Food = ({ route, navigation, addCart }) => {
         item[0].total = item[0].qty * price;
       } else {
         const newItem = {
+          name: it.name,
+          photo: it.photo,
           menuId: menuId,
           qty: 1,
           price: price,
@@ -50,7 +54,10 @@ const Food = ({ route, navigation, addCart }) => {
       setOrderItems(orderList);
     } else {
       if (item.length > 0) {
-        if (item[0]?.qty > 0) {
+        if(item[0]?.qty == 1){
+          orderList.splice(orderList.indexOf(item), 1);
+        }
+        else if (item[0]?.qty > 0) {
           let newQty = item[0].qty - 1;
           item[0].qty = newQty;
           item[0].total = newQty * price;
@@ -194,7 +201,7 @@ const Food = ({ route, navigation, addCart }) => {
                     borderTopLeftRadius: 25,
                     borderBottomLeftRadius: 25,
                   }}
-                  onPress={() => editOrder("-", item.menuId, item.price)}
+                  onPress={() => editOrder("-", item)}
                 >
                   <Text style={{ ...FONTS.body1 }}>-</Text>
                 </TouchableOpacity>
@@ -221,7 +228,7 @@ const Food = ({ route, navigation, addCart }) => {
                     borderTopRightRadius: 25,
                     borderBottomRightRadius: 25,
                   }}
-                  onPress={() => editOrder("+", item.menuId, item.price)}
+                  onPress={() => editOrder("+", item)}
                 >
                   <Text style={{ ...FONTS.body1 }}>+</Text>
                 </TouchableOpacity>
@@ -355,10 +362,14 @@ const Food = ({ route, navigation, addCart }) => {
                 borderRadius: SIZES.radius,
               }}
               onPress={() => {
-                Alert.alert(JSON.stringify(orderItems));
                 orderItems.forEach((i) => {
-                  addCart({ ...i, preco: i.price, quantidade: i.qty });
+                  addCart({ ...i, id: i.menuId, preco: i.price, quantidade: i.qty });
                 });
+                setOrderItems([]);
+                if (orderItems.length == 1)
+                  Alert.alert(orderItems.length + " produtos adicionados ao carrinho");
+                else if (orderItems.length > 0)
+                  Alert.alert(orderItems.length + " produto adicionado ao carrinho");
               }}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
@@ -405,7 +416,7 @@ function mapDispatchToProp(dispatch) {
     addCart(product) {
       const action = addCart(product);
       dispatch(action);
-    },
+    }
   };
 }
 

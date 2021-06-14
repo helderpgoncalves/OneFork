@@ -10,13 +10,12 @@ import {
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
-import { connect } from 'react-redux';
-import { remCart } from '../services/redux/actions/cart';
+import { connect } from "react-redux";
+import { remCart } from "../services/redux/actions/cart";
 import { Alert } from "react-native";
 
 const Cart = ({ route, navigation, restaurant, cart, totalCart, remCart }) => {
   function renderHeader() {
-    Alert.alert(JSON.stringify(cart));
     return (
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity
@@ -195,7 +194,7 @@ const Cart = ({ route, navigation, restaurant, cart, totalCart, remCart }) => {
             <Text style={{ ...FONTS.h3 }}>{cart.length} items in Cart</Text>
             <Text style={{ ...FONTS.h3 }}>{totalCart} €</Text>
           </View>
-
+          {/*
           <View
             style={{
               flexDirection: "row",
@@ -234,6 +233,7 @@ const Cart = ({ route, navigation, restaurant, cart, totalCart, remCart }) => {
               </Text>
             </View>
           </View>
+              /*}
 
           {/* Order Button */}
           <View
@@ -278,32 +278,89 @@ const Cart = ({ route, navigation, restaurant, cart, totalCart, remCart }) => {
       </View>
     );
   }
+
+  function renderProducts() {
+    return (
+      <View>
+        {cart.map((item) => (
+          <View
+            style={{
+              backgroundColor: COLORS.white,
+              padding: SIZES.padding,
+              margin: SIZES.padding,
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  "Deseja eliminar o produto do carrinho?",
+                  "Isto eliminará todas as quantidades do produto",
+                  [
+                    {
+                      text: "Não",
+                      style: "cancel",
+                    },
+                    {
+                      text: "Sim",
+                      onPress: () => remCart(item.id),
+                      style: "default",
+                    },
+                  ],
+                  {
+                    cancelable: true,
+                    onDismiss: () => remCart(item.id),
+                  }
+                );
+              }}
+            >
+              <View style={{ flexDirection: "row" }}>
+                <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>
+                  {item.quantidade}x - {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>
+                {"         " +
+                  item.preco +
+                  "€ x " +
+                  item.quantidade +
+                  " = " +
+                  item.total}
+                €
+              </Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      {cart.map(c => {
-        <Text>{c.id}</Text>
-      })}
       {renderHeader()}
+      <Text></Text>
+      {renderProducts()}
+      <Text></Text>
       {renderPayment()}
     </SafeAreaView>
   );
 };
 
-
 const mapStateToProps = (state, props) => {
-  return { 
+  return {
     cart: state.cart.cart,
-    totalCart: state.cart.valorTotal
+    totalCart: state.cart.valorTotal,
   };
-}
+};
 
 function mapDispatchToProp(dispatch) {
   return {
-      remCart(productID) {
-          const action = remCart(productID);
-          dispatch(action);
-      }
-  }
+    remCart(productID) {
+      const action = remCart(productID);
+      dispatch(action);
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProp)(Cart);

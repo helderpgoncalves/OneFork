@@ -1,28 +1,20 @@
-import React from 'react';
+import React from "react";
+import { Provider } from 'react-redux';
+import RootStackContainer from "./navigation/routes";
+import { setTopLevelNavigator } from "./services/utils";
 
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from '@react-navigation/native'
-
-import { Restaurant, OrderDelivery } from './screens'
-import Tabs from './navigation/tabs'
-
-const Stack = createStackNavigator();
+import store from "./services/redux/store";
 
 const App = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName={'Home'}
-            >
-                <Stack.Screen name="Home" component={Tabs} />
-                <Stack.Screen name="Restaurant" component={Restaurant} />
-                <Stack.Screen name="OrderDelivery" component={OrderDelivery} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
-}
+  return (
+    <Provider store={store}>
+      <RootStackContainer
+        ref={(navigatorRef) => {
+          setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </Provider>
+  );
+};
 
 export default App;

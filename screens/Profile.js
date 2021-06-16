@@ -74,17 +74,35 @@ const Profile = ({ navigation }) => {
     );
   }
 
+  function renderPorfile() {
+    return (
+      <View >
+        <Image
+          source={icons.Profile}
+          resizeMode="contain"
+          style={{
+            width: 30,
+            height: 30,
+          }}
+        />
+        <Text style={{ textAlign: "center", padding: 10, fontSize: 30 }}>NOME</Text>
+        <Text style={{ textAlign: "center", paddingBottom: 10, fontSize: 15, fontStyle: "italic" }}>EMAIL</Text>
+      </View>
+    );
+  }
+
   function renderLogout() {
     return (
-      <View>
-        <Text style={{ paddingTop: 200, textAlign: "center" }}>Profile</Text>
+      <View style={{ margin: 50 }}>
         <Button title="Sign Out" onPress={() => logout()} />
       </View>
     );
   }
+
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
+      {renderPorfile()}
       {renderLogout()}
     </SafeAreaView>
   );

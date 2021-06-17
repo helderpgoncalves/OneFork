@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,16 @@ import { StackActions, NavigationActions } from "react-navigation";
 import { icons, images, SIZES, COLORS, FONTS } from "../constants";
 
 const Profile = ({ navigation }) => {
+  var [user, setUser] = useState({});
+  var [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    if (!load) {
+      setLoad(true);
+      getInfo();
+    }
+  });
+
   async function logout() {
     try {
       await AsyncStorage.removeItem("@ListApp:userToken");
@@ -74,9 +84,24 @@ const Profile = ({ navigation }) => {
     );
   }
 
+  const getInfo = () => {
+    fetch("https://one-fork.herokuapp.com/api/users/me")
+      .then((response) => response.json())
+      .then(async (data) => {
+        console.log(data);
+        if (!data.error) {
+          setUser(data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Eror na importação de dados");
+      });
+  };
+
   function renderPorfile() {
     return (
-      <View >
+      <View>
         <Image
           source={icons.Profile}
           resizeMode="contain"
@@ -85,8 +110,19 @@ const Profile = ({ navigation }) => {
             height: 30,
           }}
         />
-        <Text style={{ textAlign: "center", padding: 10, fontSize: 30 }}>NOME</Text>
-        <Text style={{ textAlign: "center", paddingBottom: 10, fontSize: 15, fontStyle: "italic" }}>EMAIL</Text>
+        <Text style={{ textAlign: "center", padding: 10, fontSize: 30 }}>
+          {user.name || ""}
+        </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            paddingBottom: 10,
+            fontSize: 15,
+            fontStyle: "italic",
+          }}
+        >
+          {user.email || ""}
+        </Text>
       </View>
     );
   }
